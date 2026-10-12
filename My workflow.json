@@ -1,0 +1,154 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Installation ",
+        "formDescription": " SOme descriptionm is here SOme descriptionm is here SOme descriptionm is here SOme descriptionm is here SOme descriptionm is here",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name"
+            },
+            {
+              "fieldLabel": "email",
+              "fieldType": "email"
+            },
+            {
+              "fieldLabel": "Preffered install date",
+              "fieldType": "date"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        0,
+        0
+      ],
+      "id": "ca79b0fa-b7c6-43cf-931f-d6a0ddc62fa6",
+      "name": "On form submission",
+      "webhookId": "120d1034-8916-40da-8456-7b3861d716b1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "88c81825-9cba-4114-8626-dd9dabd31084",
+              "leftValue": "={{ $json['Preffered install date'] }}",
+              "rightValue": "={{ $now.plus(7,'days') }}",
+              "operator": {
+                "type": "dateTime",
+                "operation": "beforeOrEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        240,
+        0
+      ],
+      "id": "b7f7b4ba-ec5d-4d04-b5dd-51560cf794cb",
+      "name": "Is within-7 days?"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        416,
+        96
+      ],
+      "id": "4b3a9c71-45d3-4245-af64-a2c2e659d403",
+      "name": "todo"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0C80UYR9DM",
+          "mode": "list",
+          "cachedResultName": "social"
+        },
+        "text": "=New install request within 7 days.\nemail:{{ $json.email }}\npreffered install date:{{ $json['Preffered install date'] }}",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.7,
+      "position": [
+        464,
+        -96
+      ],
+      "id": "3238cdb9-3b14-4865-8281-d965227acbc9",
+      "name": "Send a message",
+      "webhookId": "bd468410-db2e-4361-8f3b-9547f816e46d",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "GavsyKfXoWZyWjSH",
+          "name": "Slack account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Is within-7 days?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is within-7 days?": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "todo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "1e310278-fbfa-4b45-a634-11024fb4fdd0",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "4684264208c1a5913494225f2a72aee31fbdd71e902ca4884685232a9fe3a98c"
+  },
+  "nodeGroups": [],
+  "id": "Gsww61bt8wzaDRP7",
+  "tags": []
+}
