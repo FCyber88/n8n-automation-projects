@@ -21,6 +21,8 @@ An n8n workflow that collects installation requests through a form, checks the p
 
 ## Important Note
 The current date condition checks whether the selected date is on or before seven days from now. It does not exclude past dates.
+## Workflow Screenshot
 
+![My n8n Workflow](m.png)
 ## Security
 Never publish access tokens, credentials, or private webhook URLs. Remove sensitive information before uploading the workflow to GitHub.
