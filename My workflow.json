@@ -30,7 +30,7 @@
       ],
       "id": "ca79b0fa-b7c6-43cf-931f-d6a0ddc62fa6",
       "name": "On form submission",
-      "webhookId": "120d1034-8916-40da-8456-7b3861d716b1"
+      "webhookId": "YOUR_WEBHOOK_ID"
     },
     {
       "parameters": {
@@ -97,10 +97,10 @@
       ],
       "id": "3238cdb9-3b14-4865-8281-d965227acbc9",
       "name": "Send a message",
-      "webhookId": "bd468410-db2e-4361-8f3b-9547f816e46d",
+      "webhookId": "YOUR_WEBHOOK_ID",
       "credentials": {
         "slackOAuth2Api": {
-          "id": "GavsyKfXoWZyWjSH",
+          "id": "YOUR_SLACK_CHANNEL_ID",
           "name": "Slack account"
         }
       }
@@ -146,7 +146,7 @@
   "versionId": "1e310278-fbfa-4b45-a634-11024fb4fdd0",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "4684264208c1a5913494225f2a72aee31fbdd71e902ca4884685232a9fe3a98c"
+    "instanceId": "YOUR_INSTANCE_ID"
   },
   "nodeGroups": [],
   "id": "Gsww61bt8wzaDRP7",
